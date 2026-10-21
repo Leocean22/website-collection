@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="一个简洁的个人网站收藏夹" />
+    <link rel="icon" type="image/svg+xml" href="assets/icon/app-icon.svg" />
+    <title>我的网站收藏</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section id="auth-card" class="auth-card" aria-labelledby="auth-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" data-i18n="account">ACCOUNT</p>
+            <h2 id="auth-title" data-i18n="authTitle">登录你的收藏</h2>
+          </div>
+        </div>
+        <form id="auth-form" class="auth-form">
+          <label class="sr-only" for="email-input" data-i18n="emailLabel">邮箱</label>
+          <input id="email-input" type="email" placeholder="邮箱" autocomplete="email" required />
+          <label class="sr-only" for="password-input" data-i18n="passwordLabel">密码</label>
+          <input id="password-input" type="password" placeholder="密码（至少 6 位）" autocomplete="current-password" minlength="6" required />
+          <div class="auth-actions">
+            <button id="auth-submit" type="submit" class="primary-button" data-i18n="login">登录</button>
+            <button id="auth-mode-toggle" class="auth-link" type="button" data-i18n="signUp">注册新账号</button>
+          </div>
+          <p id="auth-message" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+      <section id="user-bar" class="user-bar" hidden>
+        <span id="user-email"></span>
+        <button id="sign-out" type="button" class="secondary-button" data-i18n="signOut">退出登录</button>
+      </section>
+      <header class="hero">
+        <div class="brand-mark" aria-hidden="true">✦</div>
+        <p class="eyebrow" data-i18n="eyebrow">PERSONAL COLLECTION</p>
+        <h1><span data-i18n="heroStart">把喜欢的网站，</span><span data-i18n="heroEnd">收集起来。</span></h1>
+        <p class="subtitle" data-i18n="subtitle">保存灵感、工具和每天都会用到的网站。</p>
+        <div class="hero-controls">
+          <button id="theme-toggle" class="language-toggle" type="button" aria-label="切换主题">◐</button>
+          <button id="language-toggle" class="language-toggle" type="button">EN</button>
+        </div>
+      </header>
+
+      <section id="app-content" hidden>
+      <section class="add-card" aria-labelledby="add-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" data-i18n="newLink">NEW LINK</p>
+            <h2 id="add-title" data-i18n="addTitle">添加一个网站</h2>
+          </div>
+          <span class="shortcut">⌘ ↵</span>
+        </div>
+        <form id="add-form" class="url-form">
+          <label class="sr-only" for="url-input" data-i18n="urlLabel">网站地址</label>
+          <div class="input-wrap">
+            <span class="input-icon" aria-hidden="true">⌕</span>
+            <input
+              id="url-input"
+              name="url"
+              type="text"
+              inputmode="url"
+              autocomplete="url"
+              placeholder="粘贴网址，例如 apple.com"
+              spellcheck="false"
+              required
+            />
+            <button type="submit" class="primary-button" data-i18n="addButton">添加收藏</button>
+          </div>
+          <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="collection-section" aria-labelledby="collection-title">
+        <div class="collection-heading">
+          <div>
+            <p class="eyebrow" data-i18n="library">YOUR LIBRARY</p>
+            <h2 id="collection-title"><span data-i18n="myCollection">我的收藏</span> <span id="count" class="count">0</span></h2>
+          </div>
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <span class="sr-only" data-i18n="searchLabel">搜索收藏</span>
+            <input id="search-input" type="search" placeholder="搜索" />
+          </label>
+        </div>
+        <div id="collection" class="collection-grid"></div>
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon" aria-hidden="true">⌁</div>
+          <h3 data-i18n="emptyTitle">这里还没有收藏</h3>
+          <p data-i18n="emptyText">从上方添加第一个网站，开始建立你的网络书签。</p>
+        </div>
+      </section>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="config/config.js"></script>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
